@@ -33,7 +33,14 @@ import { mapGetters } from "vuex";
 export default {
   data() {
     return {
-      items: [{ title: "タスク一覧", icon: "list", link: { name: "tasks" } }]
+      items: [
+        { title: "タスク一覧", icon: "list", link: { name: "tasks" } },
+        {
+          title: "全ユーザータスク一覧",
+          icon: "group",
+          link: { name: "all" }
+        }
+      ]
     };
   },
   computed: {

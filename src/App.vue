@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <v-toolbar app>
-      <v-toolbar-side-icon v-show="$store.state.login_user" @click="toggleSlideMenu"></v-toolbar-side-icon>
+      <v-toolbar-side-icon
+        v-show="$store.state.login_user"
+        @click="toggleSlideMenu"
+      ></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase">
         <span>工数管理ツール</span>
       </v-toolbar-title>
@@ -31,11 +34,11 @@ export default {
     firebase.auth().onAuthStateChanged(user => {
       //ログインやログアウト時にonAuthStateChangedメソッドが発火。ログイン時：userオブジェクトが渡り、ログアウト時:nullが帰ってくる
       if (user) {
-        this.$store.dispatch("getUserData"); //全ユーザー取得
-
         //userにユーザーオブジェクトがあるかチェック
         this.setLoginUser(user);
+        this.getUserData();
         this.fetchTasks(); //データ取得
+        this.fetchTasksAll();
         //ログイン時にhomeにいたら自動的にタスク一覧へ遷移
         if (this.$router.currentRoute.name === "home") {
           this.$router.push({ name: "tasks" });
@@ -60,8 +63,11 @@ export default {
       "setLoginUser",
       "logout",
       "deleteLoginUser",
-      "fetchTasks"
+      "fetchTasks",
+      "getUserData",
+      "fetchTasksAll"
     ])
-  }
+  },
+  computed: {}
 };
 </script>

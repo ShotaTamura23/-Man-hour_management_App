@@ -2,12 +2,7 @@
   <v-container text-xs-center justify-center>
     <v-layout row wrap>
       <v-flex xs12>
-        <h1>案件一覧</h1>
-      </v-flex>
-      <v-flex xs12 mt-5 text-xs-right>
-        <router-link :to="{ name: 'tasks_edit' }">
-          <v-btn color="info">案件追加</v-btn>
-        </router-link>
+        <h1>全ユーザーのタスク一覧</h1>
       </v-flex>
 
       <v-flex xs12 mt-3 justify-center>
@@ -18,23 +13,6 @@
             <td class="text-xs-left">{{ props.item.process_state }}</td>
             <td class="text-xs-left">{{ props.item.man_hour }}</td>
             <td class="text-xs-left">{{ props.item.elapsed_time }}</td>
-            <td class="text-xs-left">
-              <span>
-                <router-link
-                  :to="{
-                    name: 'tasks_edit',
-                    params: { task_id: props.item.id }
-                  }"
-                >
-                  <v-icon small class="mr-2">edit</v-icon>
-                </router-link>
-              </span>
-              <span>
-                <v-icon small class="mr-2" @click="deleteConfirm(props.item.id)"
-                  >delete</v-icon
-                >
-              </span>
-            </td>
           </template>
         </v-data-table>
       </v-flex>
@@ -56,8 +34,7 @@ export default {
         { text: "案件名", value: "name" },
         { text: "作業状態", value: "process_state" },
         { text: "工数", value: "man_hour" },
-        { text: "経過時間", value: "elapsed_time" },
-        { text: "編集", sortable: "false" }
+        { text: "経過時間", value: "elapsed_time" }
       ],
       tasks: [] //初期データは空のオブジェクトを用意
     };
@@ -70,9 +47,7 @@ export default {
     },
     ...mapActions(["deleteTask"])
   },
-  computed: {
-    ...mapActions(["fetchTasksAll"])
-  }
+  computed: {}
 };
 </script>
 

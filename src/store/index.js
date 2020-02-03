@@ -74,25 +74,25 @@ export default new Vuex.Store({
         });
     },
     fetchTasksAll({ commit }) {
-      const buff = [];
-      const user_list = this.state.user_list;
-      for (var i = 0; i < user_list.length; i++) {
-        //firestoreからデータを取得
-        firebase
-          .firestore()
-          .collection(`users/${user_list[i]}/tasks`)
-          .get()
-          .then(function(querySnapshot) {
-            querySnapshot.forEach(function(doc) {
-              commit("fetchTasksAll", { id: doc.id, task: doc.data() });
-            });
-          })
-          .catch(error => {
-            console.log(`データの取得に失敗しました (${error})`);
+      firebase
+        .firestore()
+        .collection("users")
+        .get()
+        .then(function(querySnapshot) {
+          querySnapshot.forEach(function(doc) {
+            firebase
+              .firestore()
+              .collection("users")
+              .doc(doc.id)
+              .collection("tasks")
+              .get()
+              .then(snapshot => {
+                snapshot.forEach(doc =>
+                  commit("fetchTasksAll", { id: doc.id, task: doc.data() })
+                );
+              });
           });
-      }
-
-      console.log(buff);
+        });
     },
     toggleSlideMenu({ commit }) {
       commit("toggleSideMenu");
@@ -142,9 +142,9 @@ export default new Vuex.Store({
         .collection("users")
         .get()
         .then(query => {
-          var buff = [];
+          var list = [];
           query.forEach(doc => {
-            buff.push([doc.id]);
+            list.push([doc.id]);
             commit("getUserData", { user_id: doc.id });
           });
         })
@@ -159,9 +159,6 @@ export default new Vuex.Store({
     photoURL: state => (state.login_user ? state.login_user.photoURL : ""),
     uid: state => (state.login_user ? state.login_user.uid : null),
     getTaskById: state => id => state.tasks.find(task => task.id === id), //task_idをもとにタスク内容を取得
-    userId: state => (state.login_user ? state.login_user.uid : ""),
-    fetchTasksAll: state => {
-      return state.user_list[0];
-    }
+    userId: state => (state.login_user ? state.login_user.uid : "")
   }
 });
