@@ -31,7 +31,9 @@
                 </router-link>
               </span>
               <span>
-                <v-icon small class="mr-2" @click="deleteConfirm(props.item.id)">delete</v-icon>
+                <v-icon small class="mr-2" @click="deleteConfirm(props.item.id)"
+                  >delete</v-icon
+                >
               </span>
             </td>
           </template>

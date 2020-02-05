@@ -6,7 +6,7 @@
       </v-flex>
 
       <v-flex xs12 mt-3 justify-center>
-        <v-data-table :headers="headers" :items="tasks">
+        <v-data-table :items-per-page="15" :headers="headers" :items="tasks">
           <template v-slot:items="props">
             <td class="text-xs-left">{{ props.item.author_name }}</td>
             <td class="text-xs-left">{{ props.item.name }}</td>
