@@ -1,10 +1,7 @@
 <template>
   <v-app>
     <v-toolbar app>
-      <v-toolbar-side-icon
-        v-show="$store.state.login_user"
-        @click="toggleSlideMenu"
-      ></v-toolbar-side-icon>
+      <v-toolbar-side-icon v-show="$store.state.login_user" @click="toggleSlideMenu"></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase">
         <span>工数管理ツール</span>
       </v-toolbar-title>
@@ -71,3 +68,25 @@ export default {
   computed: {}
 };
 </script>
+
+<style>
+.author {
+  display: flex;
+  align-items: center;
+  padding-left: 14px !important;
+  padding-right: 7px !important;
+}
+.thumbnail {
+  display: block;
+  width: 20px;
+  height: 20px;
+  margin-right: 5px;
+}
+.thumbnail img {
+  width: 100%;
+  border-radius: 50%;
+}
+.theme--light.v-icon:hover {
+  color: rgba(0, 0, 0, 1);
+}
+</style>

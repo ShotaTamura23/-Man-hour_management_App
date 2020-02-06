@@ -3,6 +3,7 @@ import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
 import Tasks from "../views/Tasks.vue";
 import TaskForm from "../views/TaskForm";
+import Counter from "../views/Counter";
 
 Vue.use(VueRouter);
 
@@ -21,6 +22,11 @@ const routes = [
     path: "/tasks/:task_id?/edit", //task_idでtaskを識別する。「？」はオプション化→task_idがなければ新規追加へ（/tasks/edit）
     name: "tasks_edit",
     component: TaskForm
+  },
+  {
+    path: "/tasks/:task_id?/count",
+    name: "tasks_counter",
+    component: Counter
   },
   {
     path: "/all",

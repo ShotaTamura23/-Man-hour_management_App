@@ -11,8 +11,8 @@
               <v-text-field v-model="task.author_name" label="担当者" :disabled="true"></v-text-field>
               <v-text-field v-model="task.name" label="案件名"></v-text-field>
               <v-select :items="selectItem" v-model="task.process_state" label="作業状態"></v-select>
-              <v-text-field v-model="task.man_hour" label="工数"></v-text-field>
-              <v-text-field v-model="task.elapsed_time" label="経過時間"></v-text-field>
+              <v-text-field class="none" v-model="task.count" label="経過時間"></v-text-field>
+              <v-text-field class="none" v-model="task.manHour" label="工数"></v-text-field>
               <v-btn @click="$router.push({ name: 'tasks' })">キャンセル</v-btn>
               <v-btn color="info" @click="submit">保存</v-btn>
             </v-form>
@@ -39,10 +39,11 @@ export default {
   data() {
     return {
       task: {
+        author_logo: this.$store.getters.photoURL,
         author_name: this.$store.getters.userName,
         user_id: this.$store.getters.userId,
-        man_hour: 0,
-        elapsed_time: 0
+        count: 7199,
+        manHour: 0
       },
       selectItem: ["未着手", "進行中", "完了"]
     };
@@ -66,3 +67,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.none {
+  display: none;
+}
+</style>

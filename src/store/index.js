@@ -10,7 +10,10 @@ export default new Vuex.Store({
     drawer: false,
     tasks: [],
     task_all: [],
-    user_list: []
+    user_list: [],
+    //↓工数計算用
+    timerObj: null,
+    saveTime: 0
   },
   mutations: {
     setLoginUser(state, user) {
@@ -44,6 +47,7 @@ export default new Vuex.Store({
     getUserData(state, { user_id }) {
       state.user_list.push(user_id);
     }
+    //↓工数計算用
   },
   actions: {
     //ログインユーザー情報をステートに保存
@@ -151,6 +155,10 @@ export default new Vuex.Store({
         .catch(error => {
           console.log(`データの取得に失敗しました (${error})`);
         });
+    },
+    //↓工数計算用
+    timerStop: function() {
+      clearInterval(this.timerObj);
     }
   },
   getters: {
@@ -159,6 +167,7 @@ export default new Vuex.Store({
     photoURL: state => (state.login_user ? state.login_user.photoURL : ""),
     uid: state => (state.login_user ? state.login_user.uid : null),
     getTaskById: state => id => state.tasks.find(task => task.id === id), //task_idをもとにタスク内容を取得
-    userId: state => (state.login_user ? state.login_user.uid : "")
+    userId: state => (state.login_user ? state.login_user.uid : ""),
+    manHour_getters: state => state.manHour
   }
 });
