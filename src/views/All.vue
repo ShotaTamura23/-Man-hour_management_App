@@ -5,7 +5,7 @@
         <h1>全ユーザーのタスク一覧</h1>
       </v-flex>
 
-      <v-flex xs12 mt-3 justify-center>
+      <v-flex xs12 mt-3 justify-center class="card-wrap">
         <v-data-table :items-per-page="15" :headers="headers" :items="tasks">
           <template v-slot:items="props">
             <td class="text-xs-left author">

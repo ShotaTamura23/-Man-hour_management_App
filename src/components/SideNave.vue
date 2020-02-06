@@ -49,3 +49,16 @@ export default {
   }
 };
 </script>
+<style>
+.v-navigation-drawer--temporary:not(.v-navigation-drawer--close),
+.v-navigation-drawer--is-mobile:not(.v-navigation-drawer--close) {
+  background-color: rgb(5, 31, 53);
+}
+.v-list__tile__title,
+.v-list__tile__sub-title {
+  color: #fff;
+}
+.v-list--dense .v-list__tile .v-icon {
+  color: #fff;
+}
+</style>

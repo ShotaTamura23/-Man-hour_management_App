@@ -4,7 +4,7 @@
       <v-flex xs12>
         <h1>工数計測</h1>
       </v-flex>
-      <v-flex xs5 mt-5>
+      <v-flex xs5 mt-4 class="card-wrap">
         <v-card>
           <v-card-text>
             <v-form>

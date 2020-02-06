@@ -70,6 +70,10 @@ export default {
 </script>
 
 <style>
+h1,
+.headline {
+  color: #1b3a57;
+}
 .author {
   display: flex;
   align-items: center;
@@ -88,5 +92,18 @@ export default {
 }
 .theme--light.v-icon:hover {
   color: rgba(0, 0, 0, 1);
+}
+.v-content__wrap {
+  background-color: #f6f7f9;
+}
+thead {
+  background-color: #fafafa;
+  border-radius: 8px 8px 0 0;
+  box-shadow: 0 -1px 0 rgba(0, 0, 0, 0.12) inset;
+}
+
+.card-wrap {
+  box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
+    0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
 }
 </style>

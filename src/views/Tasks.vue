@@ -5,13 +5,13 @@
         <h1>案件一覧</h1>
       </v-flex>
 
-      <v-flex xs12 mt-5 text-xs-right>
+      <v-flex xs12 mt-2 text-xs-right>
         <router-link :to="{ name: 'tasks_edit' }">
           <v-btn color="info">案件追加</v-btn>
         </router-link>
       </v-flex>
 
-      <v-flex xs12 mt-3 justify-center>
+      <v-flex xs12 mt-3 justify-center class="card-wrap">
         <v-data-table :headers="headers" :items="tasks">
           <template v-slot:items="props">
             <td class="text-xs-left author">
