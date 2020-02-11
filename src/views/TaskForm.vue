@@ -43,7 +43,8 @@ export default {
         author_name: this.$store.getters.userName,
         user_id: this.$store.getters.userId,
         count: 7199,
-        manHour: 0
+        manHour: 0,
+        createdDate: 0
       },
       selectItem: ["未着手", "進行中", "完了"]
     };
@@ -54,6 +55,12 @@ export default {
         //新規追加か更新かを判定
         this.updateTask({ id: this.$route.params.task_id, task: this.task });
       } else {
+        const now = new Date();
+        const Year = now.getFullYear();
+        const Month = now.getMonth() + 1;
+        const Day = now.getDate();
+        const fullDate = Year + "年" + Month + "月" + Day + "日";
+        this.task.createdDate = fullDate;
         this.addTask(this.task); //アクション’addTask’を呼び出す
       }
 

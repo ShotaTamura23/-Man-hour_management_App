@@ -1,7 +1,10 @@
 <template>
   <v-app>
     <v-toolbar app>
-      <v-toolbar-side-icon v-show="$store.state.login_user" @click="toggleSlideMenu"></v-toolbar-side-icon>
+      <v-toolbar-side-icon
+        v-show="$store.state.login_user"
+        @click="toggleSlideMenu"
+      ></v-toolbar-side-icon>
       <v-toolbar-title class="headline text-uppercase">
         <span>工数管理ツール</span>
       </v-toolbar-title>
@@ -15,22 +18,34 @@
     <v-content>
       <router-view />
     </v-content>
+    <div v-show="this.loading" class="loadingWrap">
+      <vue-loading
+        class="loading"
+        v-show="this.loading"
+        type="bars"
+        color="rgb(32, 160, 255)"
+        :size="{ width: '50px', height: '50px' }"
+      ></vue-loading>
+    </div>
   </v-app>
 </template>
 
 <script>
 import firebase from "firebase";
+import { VueLoading } from "vue-loading-template";
 import { mapActions } from "vuex";
 import SideNav from "./components/SideNave";
 export default {
   name: "App",
   components: {
+    VueLoading,
     SideNav
   },
   created() {
     firebase.auth().onAuthStateChanged(user => {
       //ログインやログアウト時にonAuthStateChangedメソッドが発火。ログイン時：userオブジェクトが渡り、ログアウト時:nullが帰ってくる
       if (user) {
+        this.loading = false;
         //userにユーザーオブジェクトがあるかチェック
         this.setLoginUser(user);
         this.getUserData();
@@ -50,7 +65,7 @@ export default {
   },
   data() {
     return {
-      //
+      loading: true
     };
   },
 
@@ -70,6 +85,22 @@ export default {
 </script>
 
 <style>
+.loadingWrap {
+  height: 100vh;
+  top: 0;
+  width: 100vw;
+  position: absolute;
+  display: block;
+  background-color: rgb(255, 255, 255, 0.7);
+}
+.loading {
+  position: absolute;
+  top: 42%;
+  width: 50px;
+  right: 0;
+  left: 0;
+  margin: auto;
+}
 h1,
 .headline {
   color: #1b3a57;
@@ -105,5 +136,10 @@ thead {
 .card-wrap {
   box-shadow: 0px 3px 1px -2px rgba(0, 0, 0, 0.2),
     0px 2px 2px 0px rgba(0, 0, 0, 0.14), 0px 1px 5px 0px rgba(0, 0, 0, 0.12);
+}
+
+aside .v-list__tile__title,
+aside .v-list__tile__sub-title {
+  color: #fff;
 }
 </style>

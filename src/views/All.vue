@@ -14,6 +14,7 @@
               </span>
               {{ props.item.author_name }}
             </td>
+            <td class="text-xs-left">{{ props.item.createdDate }}</td>
             <td class="text-xs-left">{{ props.item.name }}</td>
             <td class="text-xs-left">{{ props.item.process_state }}</td>
             <td class="text-xs-left">{{ props.item.count |toHour }}時{{props.item.count |toMin }}分</td>
@@ -36,6 +37,7 @@ export default {
     return {
       headers: [
         { text: "担当者", value: "author_name" },
+        { text: "登録日", value: "createdDate" },
         { text: "案件名", value: "name" },
         { text: "作業状態", value: "process_state" },
         { text: "経過時間", value: "elapsed_time" },
